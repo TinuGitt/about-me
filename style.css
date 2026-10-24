@@ -1,0 +1,1033 @@
+/* ==========================================================================
+   THE TINU SHOW: THEATRICAL CARTOON STAGE
+   Pure Theatre • Cartoon & Camp • Bold Shapes • Auto-Flowing Presentation
+   ========================================================================== */
+
+:root {
+  /* Rich Theatrical & Cartoon Palette (Zero Neon) */
+  --curtain-red: #c1121f;
+  --curtain-dark: #780000;
+  --theatre-gold: #ffb703;
+  --theatre-yellow: #ffd166;
+  --cartoon-pink: #ff4d80;
+  --cartoon-blue: #0077b6;
+  --cartoon-cream: #fdf0d5;
+  --cartoon-white: #ffffff;
+  --stage-dark: #200512;
+  --stage-floor: #331306;
+  --border-thick: 4px solid #14050b;
+  --shadow-comic: 6px 6px 0px #14050b;
+  --shadow-comic-lg: 10px 10px 0px #14050b;
+
+  /* Fonts */
+  --font-chunky: 'Titan One', cursive, sans-serif;
+  --font-vintage: 'Shrikhand', cursive, serif;
+  --font-round: 'Fredoka', cursive, sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: var(--stage-dark);
+  font-family: var(--font-round);
+  color: #1a050d;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ==========================================================================
+   PROSCENIUM ARCH & THEATRE SHELL
+   ========================================================================== */
+.theatre-outer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: 
+    radial-gradient(ellipse at 50% 30%, #5e0d29 0%, #200512 85%);
+  overflow: hidden;
+}
+
+/* Top Valance & Marquee Sign */
+.proscenium-top {
+  position: relative;
+  z-index: 100;
+  background: linear-gradient(180deg, var(--curtain-dark) 0%, var(--curtain-red) 100%);
+  border-bottom: 5px solid var(--theatre-gold);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  padding: 0.8rem 1rem 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.valance-scallop {
+  position: absolute;
+  bottom: -18px;
+  width: 20%;
+  height: 24px;
+  background: var(--curtain-red);
+  border-radius: 0 0 50% 50%;
+  border-bottom: 4px solid var(--theatre-gold);
+}
+
+.valance-scallop:nth-child(1) { left: 0%; }
+.valance-scallop:nth-child(2) { left: 20%; }
+.valance-scallop:nth-child(3) { left: 40%; }
+.valance-scallop:nth-child(4) { left: 60%; }
+.valance-scallop:nth-child(5) { left: 80%; }
+
+.marquee-sign {
+  position: relative;
+  z-index: 2;
+  background: var(--theatre-gold);
+  border: 4px solid #14050b;
+  box-shadow: 4px 4px 0px #14050b;
+  padding: 0.4rem 1.8rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.marquee-text {
+  font-family: var(--font-chunky);
+  font-size: clamp(1.1rem, 2.8vw, 1.8rem);
+  letter-spacing: 2px;
+  color: #14050b;
+}
+
+.bulb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid #14050b;
+  animation: bulbFlicker 1.5s infinite alternate;
+}
+
+/* Side Curtains */
+.curtain-side {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(40px, 7vw, 110px);
+  z-index: 90;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--curtain-dark) 0px,
+    var(--curtain-red) 25px,
+    #540000 50px
+  );
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.7), 0 0 20px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.curtain-side-left {
+  left: 0;
+  border-right: 5px solid var(--theatre-gold);
+}
+
+.curtain-side-right {
+  right: 0;
+  border-left: 5px solid var(--theatre-gold);
+}
+
+/* ==========================================================================
+   STAGE VIEW & SPOTLIGHTS
+   ========================================================================== */
+.stage-view {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 clamp(45px, 8vw, 120px);
+  overflow: hidden;
+}
+
+.spotlight {
+  position: absolute;
+  top: -20px;
+  width: 250px;
+  height: 120%;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 240, 200, 0.16) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+  transform-origin: top center;
+}
+
+.spotlight-left {
+  left: 20%;
+  animation: sweepSpotlightLeft 9s ease-in-out infinite alternate;
+}
+
+.spotlight-right {
+  right: 20%;
+  animation: sweepSpotlightRight 11s ease-in-out infinite alternate;
+}
+
+/* ==========================================================================
+   STAGE DIRECTOR BAR (PROGRESS & CONTROLS)
+   ========================================================================== */
+.stage-director-bar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0 0.5rem;
+}
+
+.director-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.scene-counter {
+  font-family: var(--font-chunky);
+  font-size: 0.95rem;
+  color: var(--theatre-yellow);
+  background: #14050b;
+  padding: 0.35rem 0.8rem;
+  border-radius: 8px;
+  border: 2px solid var(--theatre-gold);
+  white-space: nowrap;
+}
+
+.progress-track {
+  width: 140px;
+  height: 14px;
+  background: #14050b;
+  border: 2px solid var(--theatre-gold);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--theatre-yellow), var(--cartoon-pink));
+  transition: width 0.1s linear;
+}
+
+.director-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.cartoon-btn {
+  font-family: var(--font-chunky);
+  text-transform: uppercase;
+  border: var(--border-thick);
+  box-shadow: 3px 3px 0px #14050b;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: transform 0.1s, box-shadow 0.1s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.cartoon-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0px #14050b;
+}
+
+.cartoon-btn:active {
+  transform: translateY(2px);
+  box-shadow: 1px 1px 0px #14050b;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  background: var(--cartoon-cream);
+  color: #14050b;
+}
+
+.btn-yellow {
+  background: var(--theatre-yellow);
+  color: #14050b;
+}
+
+.btn-pink {
+  background: var(--cartoon-pink);
+  color: #ffffff;
+}
+
+.btn-big {
+  font-size: 1.25rem;
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  box-shadow: 6px 6px 0px #14050b;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cartoon-cream);
+  border: 2px solid var(--cartoon-cream);
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   SCENES VIEWPORT & SLIDES
+   ========================================================================== */
+.scenes-viewport {
+  flex: 1;
+  position: relative;
+  z-index: 10;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.85) translateY(40px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.scene-slide.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+/* Slide Headers */
+.scene-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.scene-kicker {
+  display: inline-block;
+  font-family: var(--font-chunky);
+  font-size: 0.85rem;
+  background: var(--theatre-yellow);
+  color: #14050b;
+  border: 2px solid #14050b;
+  box-shadow: 2px 2px 0px #14050b;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 0.4rem;
+}
+
+.scene-title {
+  font-family: var(--font-chunky);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--theatre-gold);
+  text-shadow: 3px 3px 0px #14050b;
+  letter-spacing: 1px;
+}
+
+.scene-desc {
+  font-size: 1.1rem;
+  color: var(--cartoon-cream);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SCENE 1: THE GRAND ENTRANCE
+   ========================================================================== */
+.cartoon-bubble-hero {
+  background: var(--cartoon-cream);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: 24px;
+  padding: 1.5rem 2.2rem;
+  max-width: 780px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.starburst-badge {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  background: var(--curtain-red);
+  color: #fff;
+  font-family: var(--font-chunky);
+  font-size: 0.85rem;
+  padding: 0.35rem 1rem;
+  border: 3px solid #14050b;
+  border-radius: 50px;
+  box-shadow: 3px 3px 0px #14050b;
+}
+
+.grand-hero-title {
+  font-family: var(--font-chunky);
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  color: var(--curtain-red);
+  text-shadow: 4px 4px 0px #14050b;
+  margin-top: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.camp-ribbon {
+  display: inline-block;
+  background: var(--theatre-gold);
+  border: 3px solid #14050b;
+  box-shadow: 3px 3px 0px #14050b;
+  padding: 0.35rem 1rem;
+  border-radius: 12px;
+  font-family: var(--font-chunky);
+  font-size: clamp(0.75rem, 1.8vw, 1rem);
+  margin: 0.6rem 0;
+}
+
+.hero-tagline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2b0b18;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.hero-character-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.cartoon-photo-frame {
+  position: relative;
+  background: #ffffff;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-comic);
+  border-radius: 16px;
+  padding: 0.8rem 0.8rem 1.4rem;
+  transform: rotate(-4deg);
+}
+
+.frame-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 22px;
+  background: rgba(255, 230, 100, 0.85);
+  border: 2px dashed #14050b;
+}
+
+.stage-photo {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 3px solid #14050b;
+  display: block;
+}
+
+.frame-caption {
+  font-family: var(--font-vintage);
+  font-size: 1.1rem;
+  color: var(--curtain-red);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.comic-speech-bubble {
+  background: var(--cartoon-white);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-comic);
+  border-radius: 20px;
+  padding: 1.2rem 1.5rem;
+  max-width: 280px;
+  position: relative;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #14050b;
+}
+
+.comic-speech-bubble::after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 10px 20px 10px 0;
+  border-style: solid;
+  border-color: transparent var(--cartoon-white) transparent transparent;
+  display: block;
+  width: 0;
+}
+
+/* ==========================================================================
+   SCENE 2: POLAROIDS & VISUALS
+   ========================================================================== */
+.polaroid-gallery-row {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 980px;
+}
+
+.cartoon-card {
+  position: relative;
+  background: #ffffff;
+  border: var(--border-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: 14px;
+  padding: 0.9rem 0.9rem 1.4rem;
+  width: 260px;
+  transition: transform 0.2s;
+}
+
+.cartoon-card:hover {
+  transform: scale(1.05) rotate(0deg) !important;
+  z-index: 5;
+}
+
+.card-tilt-1 { transform: rotate(-5deg); }
+.card-tilt-2 { transform: translateY(-10px) rotate(2deg); }
+.card-tilt-3 { transform: rotate(6deg); }
+
+.thumbtack {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 3px solid #14050b;
+  box-shadow: 2px 2px 0px #14050b;
+}
+
+.yellow-tack { background: var(--theatre-yellow); }
+.red-tack { background: var(--curtain-red); }
+.green-tack { background: #06d6a0; }
+
+.card-img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1.1;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 3px solid #14050b;
+  margin-bottom: 0.8rem;
+}
+
+.card-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-label {
+  font-family: var(--font-vintage);
+  font-size: 1.1rem;
+  color: #14050b;
+  text-align: center;
+}
+
+/* ==========================================================================
+   SCENE 3: FACTS GRID
+   ========================================================================== */
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 920px;
+  width: 100%;
+}
+
+.fact-box {
+  border: var(--border-thick);
+  box-shadow: var(--shadow-comic);
+  border-radius: 18px;
+  padding: 1.4rem;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.fact-box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-comic-lg);
+}
+
+.fact-box-pink { background: #ffe3ec; }
+.fact-box-yellow { background: #fff2cc; }
+.fact-box-blue { background: #d7f0f7; }
+.fact-box-red { background: #ffd6d9; }
+
+.fact-num {
+  font-family: var(--font-chunky);
+  font-size: 1.8rem;
+  color: var(--curtain-red);
+  margin-bottom: 0.2rem;
+}
+
+.fact-box h3 {
+  font-family: var(--font-chunky);
+  font-size: 1.15rem;
+  color: #14050b;
+  margin-bottom: 0.5rem;
+}
+
+.fact-box p {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #260a15;
+}
+
+/* ==========================================================================
+   SCENE 4: SIX ACTS COMIC STRIP
+   ========================================================================== */
+.acts-comic-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.2rem;
+  max-width: 960px;
+  width: 100%;
+}
+
+.act-comic-box {
+  background: var(--cartoon-cream);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-comic);
+  border-radius: 16px;
+  padding: 1.2rem;
+  position: relative;
+}
+
+.act-stamp {
+  display: inline-block;
+  font-family: var(--font-chunky);
+  font-size: 0.75rem;
+  background: var(--curtain-red);
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid #14050b;
+  border-radius: 6px;
+  margin-bottom: 0.4rem;
+}
+
+.act-comic-box h4 {
+  font-family: var(--font-chunky);
+  font-size: 1.25rem;
+  color: #14050b;
+  margin-bottom: 0.4rem;
+}
+
+.act-comic-box p {
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #380d1e;
+}
+
+.act-highlight {
+  background: var(--theatre-yellow);
+  transform: scale(1.04);
+}
+
+.act-highlight .act-stamp {
+  background: #14050b;
+  color: var(--theatre-yellow);
+}
+
+.act-future {
+  border-style: dashed;
+  background: #f1e4ff;
+}
+
+/* ==========================================================================
+   SCENE 5: FINALE TICKET STUB
+   ========================================================================== */
+.ticket-stub-card {
+  position: relative;
+  background: var(--theatre-yellow);
+  border: var(--border-thick);
+  box-shadow: var(--shadow-comic-lg);
+  border-radius: 20px;
+  max-width: 720px;
+  width: 100%;
+  padding: 2rem 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ticket-punch {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: var(--stage-dark);
+  border: var(--border-thick);
+  border-radius: 50%;
+}
+
+.ticket-punch-left { left: -18px; }
+.ticket-punch-right { right: -18px; }
+
+.ticket-headline {
+  font-family: var(--font-chunky);
+  font-size: 1.3rem;
+  color: var(--curtain-red);
+  text-align: center;
+  border-bottom: 3px dashed #14050b;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.4rem;
+  letter-spacing: 1px;
+}
+
+.ticket-links-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.ticket-link-btn {
+  flex: 1;
+  min-width: 180px;
+  background: #ffffff;
+  border: var(--border-thick);
+  box-shadow: 4px 4px 0px #14050b;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  color: #14050b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.ticket-link-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 6px 6px 0px #14050b;
+}
+
+.btn-insta { background: #ffe5ec; }
+.btn-mail { background: #e0f2fe; }
+.btn-git { background: #fef08a; }
+
+.t-btn-title {
+  font-family: var(--font-chunky);
+  font-size: 0.75rem;
+  color: var(--curtain-red);
+}
+
+.t-btn-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.song-credit-box {
+  background: #ffffff;
+  border: 3px solid #14050b;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.credit-horn {
+  display: inline-block;
+  font-family: var(--font-chunky);
+  color: var(--curtain-red);
+  margin-right: 0.4rem;
+}
+
+.replay-row {
+  text-align: center;
+}
+
+/* ==========================================================================
+   SCENE SELECTOR PILLS
+   ========================================================================== */
+.scene-pills-nav {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  padding: 0.4rem 0 0.8rem;
+}
+
+.pill-btn {
+  font-family: var(--font-chunky);
+  font-size: 0.82rem;
+  background: var(--stage-dark);
+  color: var(--cartoon-cream);
+  border: 2px solid var(--theatre-gold);
+  box-shadow: 2px 2px 0px #14050b;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pill-btn:hover {
+  background: var(--theatre-gold);
+  color: #14050b;
+}
+
+.pill-btn.active {
+  background: var(--curtain-red);
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   STAGE FOOTLIGHTS
+   ========================================================================== */
+.stage-footlights {
+  height: 20px;
+  background: var(--stage-floor);
+  border-top: 4px solid var(--theatre-gold);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.footlight {
+  width: 14px;
+  height: 14px;
+  background: var(--theatre-yellow);
+  border: 2px solid #14050b;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 -4px 10px rgba(255, 209, 102, 0.7);
+}
+
+/* ==========================================================================
+   ONE-CLICK INTRO OVERLAY
+   ========================================================================== */
+.intro-curtain-drop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.intro-curtain-drop.opened {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.curtain-sheet {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--curtain-dark) 0px,
+    var(--curtain-red) 40px,
+    #500000 80px
+  );
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.curtain-sheet-left { left: 0; }
+.curtain-sheet-right { right: 0; }
+
+.intro-curtain-drop.opened .curtain-sheet-left {
+  transform: translateX(-105%);
+}
+
+.intro-curtain-drop.opened .curtain-sheet-right {
+  transform: translateX(105%);
+}
+
+.intro-dialog-box {
+  position: relative;
+  z-index: 2;
+  background: var(--theatre-yellow);
+  border: 5px solid #14050b;
+  box-shadow: 10px 10px 0px #14050b;
+  border-radius: 28px;
+  padding: 2.5rem 2rem;
+  max-width: 540px;
+  text-align: center;
+  transition: transform 0.5s ease;
+}
+
+.intro-curtain-drop.opened .intro-dialog-box {
+  transform: scale(0.85);
+}
+
+.dialog-horns {
+  display: inline-block;
+  background: var(--curtain-red);
+  color: #fff;
+  font-family: var(--font-chunky);
+  font-size: 0.95rem;
+  border: 3px solid #14050b;
+  box-shadow: 3px 3px 0px #14050b;
+  padding: 0.35rem 1.2rem;
+  border-radius: 50px;
+  margin-bottom: 0.8rem;
+}
+
+.dialog-title {
+  font-family: var(--font-chunky);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: #14050b;
+  letter-spacing: 2px;
+  margin-bottom: 0.8rem;
+}
+
+.dialog-desc {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2b0b18;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.intro-dialog-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.dialog-credit {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #4a1228;
+  background: rgba(255, 255, 255, 0.4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+}
+
+/* ==========================================================================
+   CARTOON KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes sweepSpotlightLeft {
+  0% { transform: rotate(-25deg); }
+  100% { transform: rotate(18deg); }
+}
+
+@keyframes sweepSpotlightRight {
+  0% { transform: rotate(25deg); }
+  100% { transform: rotate(-18deg); }
+}
+
+@keyframes bulbFlicker {
+  0% { background: #ffffff; box-shadow: 0 0 6px #ffffff; }
+  100% { background: var(--theatre-yellow); box-shadow: 0 0 2px var(--theatre-yellow); }
+}
+
+@keyframes cartoonBounce {
+  0%, 100% { transform: rotate(-4deg) translateY(0); }
+  50% { transform: rotate(-2deg) translateY(-8px); }
+}
+
+@keyframes cartoonWobble {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+.bounce-anim {
+  animation: cartoonBounce 3.5s ease-in-out infinite;
+}
+
+.wobble-anim {
+  animation: cartoonWobble 4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   MOBILE & RESPONSIVE RULES
+   ========================================================================== */
+@media (max-width: 768px) {
+  .stage-view {
+    padding: 0 clamp(20px, 4vw, 40px);
+  }
+
+  .curtain-side {
+    width: clamp(24px, 4vw, 45px);
+  }
+
+  .scene-slide {
+    padding: 0.5rem;
+  }
+
+  .cartoon-bubble-hero {
+    padding: 1.2rem;
+  }
+
+  .grand-hero-title {
+    font-size: 2rem;
+  }
+
+  .progress-track {
+    width: 80px;
+  }
+
+  .stage-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .comic-speech-bubble {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .comic-speech-bubble::after {
+    display: none;
+  }
+
+  .cartoon-card {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .facts-grid, .acts-comic-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-stub-card {
+    padding: 1.5rem 1rem;
+  }
+}

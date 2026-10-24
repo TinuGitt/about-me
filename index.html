@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE TINU SHOW ★ Starring Tinujungshi</title>
+  <meta name="description" content="The Tinu Show: An animated theatrical cartoon about Tinujungshi. Tech, theatre, unconventional makeup, and Chappell Roan.">
+  <meta name="theme-color" content="#d90429">
+
+  <!-- Cartoonish Google Fonts: Titan One (Chunky cartoon headings), Shrikhand (Theatrical vintage), Fredoka (Round friendly body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Shrikhand&family=Titan+One&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- THEATRICAL PROSCENIUM FRAME -->
+  <div class="theatre-outer">
+    <!-- Top Curtain Pelmet -->
+    <div class="proscenium-top">
+      <div class="valance-scallop"></div>
+      <div class="valance-scallop"></div>
+      <div class="valance-scallop"></div>
+      <div class="valance-scallop"></div>
+      <div class="valance-scallop"></div>
+      <div class="marquee-sign">
+        <span class="bulb"></span>
+        <span class="marquee-text">THE TINU SHOW</span>
+        <span class="bulb"></span>
+      </div>
+    </div>
+
+    <!-- Side Curtains -->
+    <div class="curtain-side curtain-side-left"></div>
+    <div class="curtain-side curtain-side-right"></div>
+
+    <!-- STAGE AREA -->
+    <div class="stage-view">
+      
+      <!-- Moving Theatrical Spotlights -->
+      <div class="spotlight spotlight-left"></div>
+      <div class="spotlight spotlight-right"></div>
+
+      <!-- AUTO-PLAY PROGRESS & CONTROLS BAR -->
+      <header class="stage-director-bar">
+        <div class="director-left">
+          <span class="scene-counter" id="scene-counter">SCENE 1 OF 5</span>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="director-controls">
+          <button id="btn-prev-scene" class="cartoon-btn btn-sm" aria-label="Previous Scene">BACK</button>
+          <button id="btn-play-pause-show" class="cartoon-btn btn-sm btn-yellow" aria-label="Pause or Resume Show">PAUSE</button>
+          <button id="btn-next-scene" class="cartoon-btn btn-sm" aria-label="Next Scene">NEXT</button>
+        </div>
+
+        <div class="director-right">
+          <button id="btn-toggle-sound" class="cartoon-btn btn-sm btn-pink">
+            <span id="sound-status-text">MUSIC: ON</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- SCENES CONTAINER (AUTO-ADVANCING) -->
+      <main class="scenes-viewport" id="scenes-viewport">
+
+        <!-- ==========================================
+             SCENE 1: THE GRAND ENTRANCE
+             ========================================== -->
+        <section class="scene-slide active" data-scene="1">
+          <div class="cartoon-bubble-hero">
+            <div class="starburst-badge">LIVE ON STAGE</div>
+            <h1 class="grand-hero-title">MEET TINUJUNGSHI!</h1>
+            <div class="camp-ribbon">TECH MAKER • THEATRE ENTHUSIAST • UNCONVENTIONAL MAKEUP</div>
+            <p class="hero-tagline">
+              Born December 16, 2009. Designing physical objects, hacking software, and turning everyday technology into a full theatrical production.
+            </p>
+          </div>
+
+          <div class="hero-character-stage">
+            <div class="cartoon-photo-frame bounce-anim">
+              <div class="frame-tape"></div>
+              <img src="assets/photo-camp-1.jpg" alt="Tinujungshi smiling with bold makeup" class="stage-photo">
+              <div class="frame-caption">Star of the Show</div>
+            </div>
+            
+            <div class="comic-speech-bubble bubble-right wobble-anim">
+              <p>Welcome to my corner! Sit back, the whole show plays by itself!</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SCENE 2: THE PHOTO VAULT (CAMP & GLAM)
+             ========================================== -->
+        <section class="scene-slide" data-scene="2">
+          <div class="scene-header">
+            <span class="scene-kicker">SCENE TWO</span>
+            <h2 class="scene-title">YES, THE MAKEUP IS REAL</h2>
+            <p class="scene-desc">Theatrical looks, late-night experiments, and zero shame.</p>
+          </div>
+
+          <div class="polaroid-gallery-row">
+            <!-- Photo 1 -->
+            <div class="cartoon-card card-tilt-1">
+              <div class="thumbtack yellow-tack"></div>
+              <div class="card-img-box">
+                <img src="assets/photo-camp-1.jpg" alt="Bold makeup and playful look">
+              </div>
+              <div class="card-label">Look One: Maximum Gloss</div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="cartoon-card card-tilt-2">
+              <div class="thumbtack red-tack"></div>
+              <div class="card-img-box">
+                <img src="assets/photo-camp-2.jpg" alt="Lying on the floor with glossy makeup">
+              </div>
+              <div class="card-label">Look Two: Floor Level Glam</div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="cartoon-card card-tilt-3">
+              <div class="thumbtack green-tack"></div>
+              <div class="card-img-box">
+                <img src="assets/photo-camp-3.jpg" alt="Focused look with cool hair">
+              </div>
+              <div class="card-label">Look Three: The Thinker</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SCENE 3: WHO IS TINU? (THE FACTS)
+             ========================================== -->
+        <section class="scene-slide" data-scene="3">
+          <div class="scene-header">
+            <span class="scene-kicker">SCENE THREE</span>
+            <h2 class="scene-title">WHAT I ACTUALLY DO</h2>
+            <p class="scene-desc">No corporate fluff, just the honest truth.</p>
+          </div>
+
+          <div class="facts-grid">
+            <div class="fact-box fact-box-pink">
+              <div class="fact-num">01</div>
+              <h3>Human-Computer Interaction</h3>
+              <p>I study how existing tech works and build new ways to interact with it so it feels easier and leaves a memorable impression.</p>
+            </div>
+
+            <div class="fact-box fact-box-yellow">
+              <div class="fact-num">02</div>
+              <h3>Hardware and Software</h3>
+              <p>I love making physical objects from scratch and wiring them up to software so they interact with the physical world.</p>
+            </div>
+
+            <div class="fact-box fact-box-blue">
+              <div class="fact-num">03</div>
+              <h3>Skill Hoarding</h3>
+              <p>Constantly picking up random new crafts, learning new tools, browsing strange corners of the internet, and listening to music.</p>
+            </div>
+
+            <div class="fact-box fact-box-red">
+              <div class="fact-num">04</div>
+              <h3>Chappell Roan Fanatic</h3>
+              <p>My absolute favorite artist. Pink Pony Club is basically the official anthem of my workshop.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SCENE 4: THE SIX ACTS (THE TIMELINE)
+             ========================================== -->
+        <section class="scene-slide" data-scene="4">
+          <div class="scene-header">
+            <span class="scene-kicker">SCENE FOUR</span>
+            <h2 class="scene-title">THE SIX ACTS OF TINU</h2>
+            <p class="scene-desc">From twelve years old to right now.</p>
+          </div>
+
+          <div class="acts-comic-strip">
+            <div class="act-comic-box">
+              <span class="act-stamp">ACT 1</span>
+              <h4>AGE 12</h4>
+              <p>Started STEM trainings. Coded first apps, made games, and played with robotics.</p>
+            </div>
+
+            <div class="act-comic-box">
+              <span class="act-stamp">ACT 2</span>
+              <h4>AGE 13</h4>
+              <p>Competed in first state STEM competition. Focused on software.</p>
+            </div>
+
+            <div class="act-comic-box">
+              <span class="act-stamp">ACT 3</span>
+              <h4>AGE 14</h4>
+              <p>Second state STEM competition. Placed directly in the top 20s.</p>
+            </div>
+
+            <div class="act-comic-box">
+              <span class="act-stamp">ACT 4</span>
+              <h4>AGE 15</h4>
+              <p>Creative technologist and visionary for a regional Dollar Store.</p>
+            </div>
+
+            <div class="act-comic-box act-highlight">
+              <span class="act-stamp">ACT 5 ★ NOW</span>
+              <h4>AGE 16</h4>
+              <p>Diploma in Computer Science and Engineering. In the thick of it.</p>
+            </div>
+
+            <div class="act-comic-box act-future">
+              <span class="act-stamp">ACT 6</span>
+              <h4>AGE 17+</h4>
+              <p>Yet to unravel. The biggest scene is coming up next.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==========================================
+             SCENE 5: GRAND FINALE & BACKSTAGE PASS
+             ========================================== -->
+        <section class="scene-slide" data-scene="5">
+          <div class="scene-header">
+            <span class="scene-kicker">GRAND FINALE</span>
+            <h2 class="scene-title">COME SAY HELLO!</h2>
+            <p class="scene-desc">Backstage pass to talk tech, theatre, or makeup.</p>
+          </div>
+
+          <div class="ticket-stub-card">
+            <div class="ticket-punch ticket-punch-left"></div>
+            <div class="ticket-punch ticket-punch-right"></div>
+
+            <div class="ticket-inner">
+              <div class="ticket-headline">ADMIT ONE: THE TINU CIRCLE</div>
+              
+              <div class="ticket-links-row">
+                <a href="https://instagram.com/bihgrandson" target="_blank" rel="noopener noreferrer" class="ticket-link-btn btn-insta">
+                  <span class="t-btn-title">INSTAGRAM</span>
+                  <span class="t-btn-val">@bihgrandson</span>
+                </a>
+
+                <button id="btn-copy-email" class="ticket-link-btn btn-mail" title="Click to copy email">
+                  <span class="t-btn-title">EMAIL (CLICK TO COPY)</span>
+                  <span class="t-btn-val" id="email-display">tinujungshi34@outlook.com</span>
+                </button>
+
+                <a href="https://github.com/TinuGitt" target="_blank" rel="noopener noreferrer" class="ticket-link-btn btn-git">
+                  <span class="t-btn-title">GITHUB</span>
+                  <span class="t-btn-val">github.com/TinuGitt</span>
+                </a>
+              </div>
+
+              <!-- SONG CREDIT BADGE -->
+              <div class="song-credit-box">
+                <span class="credit-horn">MUSIC CREDIT:</span>
+                <span>Background song is <strong>Pink Pony Club (Chappell Roan)</strong> Piano Version by <strong>Sing2Piano YT</strong></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- REPLAY BUTTON -->
+          <div class="replay-row">
+            <button id="btn-replay-show" class="cartoon-btn btn-yellow">
+              WATCH SHOW AGAIN FROM ACT 1
+            </button>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- SCENE SELECTOR PILLS -->
+      <nav class="scene-pills-nav" aria-label="Jump to Scene">
+        <button class="pill-btn active" data-target="1">1. Welcome</button>
+        <button class="pill-btn" data-target="2">2. Visuals</button>
+        <button class="pill-btn" data-target="3">3. About</button>
+        <button class="pill-btn" data-target="4">4. 6 Acts</button>
+        <button class="pill-btn" data-target="5">5. Contact</button>
+      </nav>
+
+      <!-- FOOTLIGHTS AT FRONT OF STAGE -->
+      <div class="stage-footlights">
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+        <div class="footlight"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AUDIO ELEMENT (Pink Pony Club Piano Version by Sing2Piano YT) -->
+  <audio id="bg-audio" preload="auto" loop>
+    <source src="assets/pink-pony-club.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- INITIAL CURTAIN DROP OVERLAY (ONE-CLICK START) -->
+  <div id="intro-curtain-drop" class="intro-curtain-drop" role="dialog" aria-modal="true" aria-label="Start The Show">
+    <div class="curtain-sheet curtain-sheet-left"></div>
+    <div class="curtain-sheet curtain-sheet-right"></div>
+    
+    <div class="intro-dialog-box">
+      <div class="dialog-horns">IT IS SHOWTIME!</div>
+      <h2 class="dialog-title">THE TINU SHOW</h2>
+      <p class="dialog-desc">
+        An animated cartoon theatre experience. Put your feet up, the show flows completely on its own!
+      </p>
+
+      <div class="intro-dialog-buttons">
+        <button id="btn-start-show-sound" class="cartoon-btn btn-big btn-yellow">
+          START THE SHOW WITH MUSIC!
+        </button>
+        <button id="btn-start-show-mute" class="cartoon-btn btn-sm btn-outline">
+          Start without sound
+        </button>
+      </div>
+
+      <div class="dialog-credit">
+        Song: Pink Pony Club (Chappell Roan) Piano Version by Sing2Piano YT
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
